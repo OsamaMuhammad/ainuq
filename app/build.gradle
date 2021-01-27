@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -24,6 +25,55 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
+    }
+
+    flavorDimensions "version"
+    productFlavors {
+        def API_BASE_URL = "API_BASE_URL"
+
+
+        dev {
+            dimension "version"
+
+            applicationIdSuffix ".dev"
+            versionNameSuffix "-dev"
+            manifestPlaceholders = [appName: "AiNuq - Dev"]
+
+            buildConfigField "String", API_BASE_URL, "\"${API_DEV}\""
+//            resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
+
+        }
+
+        demo {
+            dimension "version"
+
+            applicationIdSuffix ".demo"
+            versionNameSuffix "-demo"
+
+            manifestPlaceholders = [appName: "AiNuq - Demo"]
+
+            buildConfigField "String", API_BASE_URL, "\"${API_DEMO}\""
+
+        }
+
+        prod {
+            dimension "version"
+
+            manifestPlaceholders = [appName: "Cruze4Cash"]
+
+            buildConfigField "String", API_BASE_URL, "\"${API_DEVELOPMENT}\""
+
+
+//            signingConfig signingConfigs.release
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -55,9 +105,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 
-    implementation "com.google.dagger:dagger:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
-
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
@@ -72,6 +119,8 @@ dependencies {
 
     implementation "com.jakewharton.timber:timber:$timber_version"
 
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
 
     testImplementation "junit:junit:$junit_version"

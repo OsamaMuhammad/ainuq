@@ -109,6 +109,11 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
 
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+
+
     implementation "io.coil-kt:coil:$coil_version"
 
 
@@ -121,6 +126,10 @@ dependencies {
 
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+//    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_lifecycle"
+//    kapt "androidx.hilt:hilt-compiler:$hilt_lifecycle"
+
 
 
     testImplementation "junit:junit:$junit_version"

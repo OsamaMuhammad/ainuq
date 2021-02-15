@@ -19,7 +19,7 @@ buildscript {
         logging_interceptor_version = "3.1.0"
         coil_version = "1.1.1"
         timber_version = "4.7.1"
-        hilt_version = "2.28-alpha"
+        hilt_version = "2.31-alpha"
         hilt_lifecycle = "1.0.0-alpha03"
         moshi_version = "1.11.0"
     }

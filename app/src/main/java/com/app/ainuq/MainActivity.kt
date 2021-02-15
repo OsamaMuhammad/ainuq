@@ -5,8 +5,10 @@ import android.os.Bundle
 import com.app.ainuq.common.AuthStore
 import com.app.ainuq.databinding.ActivityMainBinding
 import com.squareup.moshi.Moshi
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding

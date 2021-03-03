@@ -33,8 +33,8 @@ android {
 
     flavorDimensions "version"
     productFlavors {
-        def API_BASE_URL = "API_BASE_URL"
 
+        def API_BASE_URL = "API_BASE_URL"
 
         dev {
             dimension "version"

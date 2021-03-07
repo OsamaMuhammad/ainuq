@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.HomeFragment">
+    tools:context=".ui.home.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <include
-            android:id="@+id/layout_suggestion_popular_frames"
+            android:id="@+id/layout_categories"
             layout="@layout/item_suggestion_header"
             android:layout_width="0dp"
             android:layout_marginTop="24dp"
@@ -32,6 +32,33 @@
             app:layout_constraintTop_toBottomOf="@id/layout_search" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_categories"
+            android:layout_width="0dp"
+            android:layout_marginTop="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_top_categories"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_categories"/>
+
+
+
+        <include
+            android:id="@+id/layout_suggestion_popular_frames"
+            layout="@layout/item_suggestion_header"
+            android:layout_width="0dp"
+            android:layout_marginTop="24dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_categories" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_popular"
             android:layout_width="0dp"
             android:layout_marginTop="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -42,6 +69,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_suggestion_popular_frames"/>
+
+
+        <include
+            android:id="@+id/layout_suggestion_you_may_like"
+            layout="@layout/item_suggestion_header"
+            android:layout_width="0dp"
+            android:layout_marginTop="24dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_popular" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_you_may_like"
+            android:layout_width="0dp"
+            android:layout_marginTop="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_product"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_suggestion_you_may_like"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

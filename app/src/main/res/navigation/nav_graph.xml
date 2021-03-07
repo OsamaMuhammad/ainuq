@@ -7,20 +7,38 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.app.ainuq.main.MainFragment"
+        android:name="com.app.ainuq.ui.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main">
 
+        <action
+            android:id="@+id/action_mainFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.app.ainuq.login.LoginFragment"
+        android:name="com.app.ainuq.ui.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/loginFragmentToMainFragment"
             app:destination="@id/mainFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_open_exit"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.app.ainuq.ui.productDetail.ProductDetailFragment"
+        android:label="fragment_product_detail"
+        tools:layout="@layout/fragment_product_detail">
+        <argument
+            android:name="productDetail"
+            app:argType="com.app.ainuq.ui.home.ProductItemUiModel" />
     </fragment>
 </navigation>

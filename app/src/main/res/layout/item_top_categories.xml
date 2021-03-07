@@ -15,9 +15,10 @@
 
         <ImageView
             android:id="@+id/img_frame_icon"
-            android:layout_width="60dp"
-            android:layout_height="25dp"
-            android:background="@color/primaryLight"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/sunglasses"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

@@ -4,6 +4,7 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -132,6 +133,9 @@ dependencies {
 
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_lifecycle"
     kapt "androidx.hilt:hilt-compiler:$hilt_lifecycle"
+
+    implementation "com.romandanylyk:pageindicatorview:$pageindicatorview_version"
+
 
     testImplementation "junit:junit:$junit_version"
 

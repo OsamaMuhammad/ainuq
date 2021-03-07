@@ -5,20 +5,22 @@
     android:layout_height="match_parent">
 
     <ImageView
+        style="@style/imageIcon.Medium"
         android:id="@+id/img_search"
         android:layout_width="40dp"
+        android:src="@drawable/search"
         android:layout_height="40dp"
-        android:background="@color/primaryLight"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/primary" />
 
     <EditText
         android:id="@+id/et_search"
         style="@style/textBook.Medium"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:background="null"
+        android:layout_marginStart="12dp"
+        android:background="@null"
         android:hint="Search"
         android:textColor="@color/primaryLight"
         app:layout_constraintBottom_toBottomOf="@id/img_search"
@@ -29,7 +31,7 @@
     <View
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:background="@color/lightGray"
         app:layout_constraintEnd_toEndOf="@id/et_search"
         app:layout_constraintStart_toStartOf="@id/img_search"

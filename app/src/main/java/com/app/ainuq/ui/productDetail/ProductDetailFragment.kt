@@ -1,18 +1,28 @@
 package com.app.ainuq.ui.productDetail
 
+import android.app.Activity.RESULT_CANCELED
+import android.app.Activity.RESULT_OK
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.transition.TransitionInflater
 import androidx.viewpager2.widget.ViewPager2
 import com.app.ainuq.databinding.FragmentProductDetailBinding
+import com.app.ainuq.utils.FileHelper
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class ProductDetailFragment : Fragment() {
@@ -24,12 +34,13 @@ class ProductDetailFragment : Fragment() {
     private lateinit var colorAdapter: ColorsAdapter
     private lateinit var imageSliderAdapter: ImageSliderAdapter
 
+    val REQUEST_IMAGE_CAPTURE = 1
+    val REQUEST_IMAGE_CHOOSE = 2
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
         viewModel.setProduct(args.productDetail)
-
     }
 
     override fun onCreateView(
@@ -108,6 +119,91 @@ class ProductDetailFragment : Fragment() {
 
         binding.imgBack.setOnClickListener {
             findNavController().popBackStack()
+        }
+
+        binding.btnTryNow.setOnClickListener {
+            selectImage(requireContext())
+        }
+    }
+
+    private fun selectImage(context: Context) {
+        val options = arrayOf<CharSequence>("Take Photo", "Choose from Gallery", "Cancel")
+        val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+        builder.setItems(options) { dialog, item ->
+            when {
+                options[item] == "Take Photo" -> {
+                    val takePicture = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    startActivityForResult(takePicture, REQUEST_IMAGE_CAPTURE)
+                }
+                options[item] == "Choose from Gallery" -> {
+                    val pickPhoto =
+                        Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                    startActivityForResult(pickPhoto, REQUEST_IMAGE_CHOOSE)
+                }
+                options[item] == "Cancel" -> {
+                    dialog.dismiss()
+                }
+            }
+        }
+        builder.show()
+    }
+
+    private fun dispatchTakePictureIntent() {
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        try {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+        } catch (e: ActivityNotFoundException) {
+            // display error state to the user
+        }
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode != RESULT_CANCELED) {
+            when (requestCode) {
+                REQUEST_IMAGE_CAPTURE -> if (resultCode == RESULT_OK && data != null) {
+                    val selectedImage = data.extras?.get("data") as Bitmap?
+                    navigateToAiNuqImageFragment(selectedImage)
+                }
+                REQUEST_IMAGE_CHOOSE -> if (resultCode == RESULT_OK && data != null) {
+
+                    val uri = data.data
+                    val bitmap: Bitmap? = FileHelper.getBitmapFromUri(uri, requireContext())
+                    navigateToAiNuqImageFragment(bitmap)
+
+
+//                    val selectedImage: Uri? = data.data
+//                    val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
+//                    if (selectedImage != null) {
+//                        val cursor: Cursor? = requireContext().contentResolver.query(
+//                            selectedImage,
+//                            filePathColumn, null, null, null
+//                        )
+//                        if (cursor != null) {
+//                            cursor.moveToFirst()
+//                            val columnIndex: Int = cursor.getColumnIndex(filePathColumn[0])
+//                            val picturePath: String = cursor.getString(columnIndex)
+//                            cursor.close()
+//                        }
+//                    }
+                }
+            }
+        }
+    }
+
+    private fun navigateToAiNuqImageFragment(imageBitmap: Bitmap?) {
+        viewModel.productDetail.value?.let { productDetail ->
+            imageBitmap?.let {
+                findNavController()
+                    .navigate(
+                        ProductDetailFragmentDirections
+                            .actionProductDetailFragmentToAiNuqImageFragment(it, productDetail)
+                    )
+            } ?: run {
+                Toast.makeText(requireContext(), "Image not found", Toast.LENGTH_SHORT).show()
+            }
+        } ?: run {
+            Toast.makeText(requireContext(), "Product Detail not found", Toast.LENGTH_SHORT).show()
         }
     }
 

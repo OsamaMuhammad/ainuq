@@ -40,5 +40,22 @@
         <argument
             android:name="productDetail"
             app:argType="com.app.ainuq.ui.home.ProductItemUiModel" />
+        <action
+            android:id="@+id/action_productDetailFragment_to_aiNuqImageFragment"
+            app:destination="@id/aiNuqImageFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"/>
+    </fragment>
+    <fragment
+        android:id="@+id/aiNuqImageFragment"
+        android:name="com.app.ainuq.ui.ainuqImage.AiNuqImageFragment"
+        android:label="fragment_ai_nuq_image"
+        tools:layout="@layout/fragment_ai_nuq_image" >
+        <argument
+            android:name="image"
+            app:argType="android.graphics.Bitmap" />
+        <argument
+            android:name="productDetail"
+            app:argType="com.app.ainuq.ui.home.ProductItemUiModel" />
     </fragment>
 </navigation>

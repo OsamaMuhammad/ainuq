@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.app.ainuq.common.AuthStore
+import com.app.ainuq.ui.cart.GlassItemUiModel
 import com.app.ainuq.ui.productDetail.ColorItemUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -36,7 +37,7 @@ class HomeViewModel @Inject constructor(
                         ColorItemUiModel(
                             name = "Blue",
                             value = "#000C9C",
-                            isSelected = false
+                            isSelected = true
                         ),
                         ColorItemUiModel(
                             name = "Black",
@@ -49,6 +50,27 @@ class HomeViewModel @Inject constructor(
                             isSelected = false
                         )
                     ),
+
+                    glasses = listOf(
+                        GlassItemUiModel(
+                            name = "Glass",
+                            isSelected = true,
+                            price = "240",
+                            glassId = "SDfdsf"
+                        ),
+                        GlassItemUiModel(
+                            name = "Plastic",
+                            isSelected = false,
+                            price = "304",
+                            glassId = "asasfas"
+                        ),
+                        GlassItemUiModel(
+                            name = "Computer Glasses",
+                            isSelected = false,
+                            price = "435",
+                            glassId = "dfsdgsfhdssd"
+                        )
+                    ),
                     gender = "Male",
                     images = listOf(
                         "https://picsum.photos/id/0/300/200",
@@ -58,7 +80,7 @@ class HomeViewModel @Inject constructor(
                     material = "Metal",
                     productId = "$it",
                     thickness = "Normal",
-                    weight = "Light"
+                    weight = "Light",
                 )
             )
             categoryItems.add(

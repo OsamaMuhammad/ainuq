@@ -1,6 +1,8 @@
 package com.app.ainuq.ui.home
 
 import android.os.Parcelable
+import com.app.ainuq.ui.cart.GlassItemUiModel
+import com.app.ainuq.ui.prescription.PrescriptionItemUiModel
 import com.app.ainuq.ui.productDetail.ColorItemUiModel
 import kotlinx.parcelize.Parcelize
 import java.util.*
@@ -19,6 +21,8 @@ data class ProductItemUiModel(
     val thickness: String,
     val images: List<String>,
     val colors: List<ColorItemUiModel>,
+    val glasses: List<GlassItemUiModel>,
+    val prescription: PrescriptionItemUiModel? = null
 ) : Parcelable
 
 data class HomeUiModel(

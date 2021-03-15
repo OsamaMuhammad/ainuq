@@ -124,6 +124,13 @@ class ProductDetailFragment : Fragment() {
         binding.btnTryNow.setOnClickListener {
             selectImage(requireContext())
         }
+
+        binding.btnAddToCart.setOnClickListener {
+            viewModel.productDetail.value?.let {
+                findNavController()
+                    .navigate(ProductDetailFragmentDirections.actionProductDetailFragmentToAddToCartFragment(it))
+            }
+       }
     }
 
     private fun selectImage(context: Context) {

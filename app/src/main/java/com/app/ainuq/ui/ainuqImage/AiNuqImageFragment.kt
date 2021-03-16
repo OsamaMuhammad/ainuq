@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.app.ainuq.R
 import com.app.ainuq.databinding.FragmentAiNuqImageBinding
@@ -133,7 +134,7 @@ class AiNuqImageFragment : Fragment() {
         viewModel.productDetail.observe(viewLifecycleOwner, Observer {
             it?.let {
                 it.apply {
-                    binding.tvTotalPrice.text = price
+                    binding.tvTotalPrice.text = "Rs. ${price}"
                 }
             } ?: run {
 
@@ -144,6 +145,10 @@ class AiNuqImageFragment : Fragment() {
     private fun setupViews() {
         binding.btnAddToCart.setOnClickListener{
 
+        }
+
+        binding.imgBack.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 

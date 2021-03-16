@@ -36,7 +36,7 @@
             tools:text="Frame Name" />
 
         <TextView
-            android:id="@+id/tv_total_price"
+            android:id="@+id/tvF_frame_price"
             style="@style/textBold.Large"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.app.ainuq.databinding.FragmentMainBinding
 import com.app.ainuq.ui.login.LoginViewModel
 
@@ -41,6 +42,10 @@ class MainFragment : Fragment() {
         binding.viewPager.apply {
             adapter = viewPagerAdapter
             isUserInputEnabled = false
+        }
+
+        binding.imgCart.setOnClickListener {
+            findNavController().navigate(MainFragmentDirections.actionMainFragmentToCartFragment())
         }
 
     }

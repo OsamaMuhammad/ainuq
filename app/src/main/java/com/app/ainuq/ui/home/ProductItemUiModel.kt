@@ -10,12 +10,12 @@ import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import java.util.*
 
-@Entity
 @Parcelize
 data class ProductItemUiModel(
     val productId: String,
+    val cartItemId: String? = null,
     val name: String,
-    val price: String,
+    val price: Double,
     val isFavourite: Boolean,
     val rating: String,
     val gender: String,

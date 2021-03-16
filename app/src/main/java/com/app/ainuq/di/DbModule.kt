@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.app.ainuq.db.AppDatabase
+import com.app.ainuq.db.CartDao
+import com.app.ainuq.db.PrescriptionDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,6 +26,18 @@ class DbModule {
             applicationContext,
             AppDatabase::class.java, databaseName
         ).build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideCartDao(appDatabase: AppDatabase): CartDao {
+        return appDatabase.cartDao()
+    }
+
+    @Singleton
+    @Provides
+    fun providePrescriptionDao(appDatabase: AppDatabase): PrescriptionDao {
+        return appDatabase.prescriptionDao()
     }
 
 }

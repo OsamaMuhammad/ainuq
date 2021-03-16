@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -14,6 +15,7 @@ import coil.load
 import com.app.ainuq.databinding.FragmentAddToCartBinding
 import com.app.ainuq.ui.prescription.PrescriptionAdapter
 import com.app.ainuq.ui.productDetail.ColorsAdapter
+import com.app.ainuq.utils.Result
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -55,20 +57,45 @@ class AddToCartFragment : Fragment() {
     private fun setupObservers() {
         viewModel.productDetail.observe(viewLifecycleOwner, Observer {
             it?.let {
-                binding.layoutTop.imgProduct.load(it.images.firstOrNull() ?: ""){
+                binding.layoutTop.imgProduct.load(it.images.firstOrNull() ?: "") {
                     crossfade(true)
                 }
                 binding.layoutTop.tvFrameName.text = it.name
-                binding.layoutTop.tvTotalPrice.text = it.price
+                binding.layoutTop.tvFFramePrice.text = "Rs. ${it.price}"
 
                 colorAdapter.submitList(it.colors)
                 glassTypeAdapter.submitList(it.glasses)
+
+                var totalPrice = 0.0
+                totalPrice += it.price
+                totalPrice += it.glasses.firstOrNull { it.isSelected }?.price ?: 0.0
+                binding.tvTotalPrice.text = "Rs. ${totalPrice}"
             }
         })
 
-        viewModel.prescriptions.observe(viewLifecycleOwner){
+        viewModel.prescriptions.observe(viewLifecycleOwner) {
             prescriptAdapter.submitList(it)
         }
+
+        viewModel.addToCartEvent.observe(viewLifecycleOwner, {
+            when (it) {
+                is Result.Loading -> {
+
+                }
+                is Result.Success -> {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                }
+                is Result.Error -> {
+
+                }
+            }
+        })
+
+        viewModel.messageEvent.observe(viewLifecycleOwner, Observer {
+            it?.consume()?.let {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
+        })
 
     }
 
@@ -118,6 +145,10 @@ class AddToCartFragment : Fragment() {
 
         binding.imgBack.setOnClickListener {
             findNavController().popBackStack()
+        }
+
+        binding.btnAddToCart.setOnClickListener {
+            viewModel.addToCart()
         }
 
         binding.btnAddPrescription.setOnClickListener {

@@ -17,13 +17,15 @@ interface PrescriptionDao {
     @Query("SELECT * FROM PrescriptionItemUiModel WHERE userId = (:userId)")
     fun getAllPrescriptionByUserId(userId: String): Flow<List<PrescriptionItemUiModel>>
 
+    @Query("SELECT * FROM PrescriptionItemUiModel WHERE prescriptionId = (:prescriptionId)")
+    fun getAllPrescriptionByPrescriptionId(prescriptionId: String): List<PrescriptionItemUiModel>
+
     @Query("UPDATE PrescriptionItemUiModel SET isSelected = (:isSelected)")
     fun selectDeselectAll(isSelected: Boolean)
 
 
     @Query("UPDATE PrescriptionItemUiModel SET isSelected = (:isSelected) WHERE prescriptionId = (:prescriptionId)")
     fun selectDeselectItem(isSelected: Boolean, prescriptionId: String)
-
 
 
 }

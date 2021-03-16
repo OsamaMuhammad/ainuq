@@ -31,7 +31,7 @@ class HomeViewModel @Inject constructor(
                 ProductItemUiModel(
                     name = "Item $it",
                     isFavourite = false,
-                    price = "Rs. 1,500",
+                    price = 1500.0,
                     rating = "4.5/5",
                     colors = listOf(
                         ColorItemUiModel(
@@ -58,19 +58,19 @@ class HomeViewModel @Inject constructor(
                         GlassItemUiModel(
                             name = "Glass",
                             isSelected = false,
-                            price = "240",
+                            price = 240.0,
                             glassId = "SDfdsf"
                         ),
                         GlassItemUiModel(
                             name = "Plastic",
                             isSelected = false,
-                            price = "304",
+                            price = 240.0,
                             glassId = "asasfas"
                         ),
                         GlassItemUiModel(
                             name = "Computer Glasses",
                             isSelected = false,
-                            price = "435",
+                            price = 435.0,
                             glassId = "dfsdgsfhdssd"
                         )
                     ),

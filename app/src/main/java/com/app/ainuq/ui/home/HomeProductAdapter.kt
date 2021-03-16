@@ -64,7 +64,7 @@ class HomeProductAdapter(
                 }
             }
             item.apply {
-                binding.tvFramePrice.text = price
+                binding.tvFramePrice.text = "Rs. ${price}"
                 binding.tvRating.text = rating
 
                 binding.root.setOnClickListener {

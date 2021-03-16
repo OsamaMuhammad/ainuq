@@ -75,6 +75,10 @@ class AddPrescriptionFragment : Fragment() {
             )
         }
 
+        binding.imgBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
 
     }
 

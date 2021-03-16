@@ -16,6 +16,11 @@
             app:destination="@id/productDetailFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit" />
+        <action
+            android:id="@+id/action_mainFragment_to_cartFragment"
+            app:destination="@id/cartFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -78,4 +83,9 @@
         android:name="com.app.ainuq.ui.prescription.AddPrescriptionFragment"
         android:label="fragment_add_prescription"
         tools:layout="@layout/fragment_add_prescription" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.app.ainuq.ui.cart.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 </navigation>

@@ -68,7 +68,7 @@ class ProductDetailFragment : Fragment() {
                     binding.tvGender.text = gender
                     binding.tvWeight.text = weight
                     binding.tvThickness.text = thickness
-                    binding.tvTotalPrice.text = price
+                    binding.tvTotalPrice.text = "Rs. ${price}"
                     binding.tvRating.text = rating
                     binding.tvMaterial.text = material
 

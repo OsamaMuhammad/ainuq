@@ -132,8 +132,6 @@ dependencies {
 
 
 
-
-
     implementation("com.github.ihsanbal:LoggingInterceptor:$logging_interceptor_version") {
         exclude group: 'org.json', module: 'json'
     }

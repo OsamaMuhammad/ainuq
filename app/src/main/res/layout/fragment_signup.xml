@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     android:background="@color/white"
-    tools:context=".ui.login.LoginFragment">
+    android:fillViewport="true"
+    tools:context=".ui.signup.SignupFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,19 +25,19 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/tv_sign_up"
             style="@style/textBold.Large2"
-            android:id="@+id/tv_login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Login"
-            app:layout_constraintBottom_toTopOf="@id/layout_email"
+            android:text="Sign Up"
+            app:layout_constraintBottom_toTopOf="@id/layout_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/img_logo"
-            app:layout_constraintVertical_bias="0.17000002"
+            app:layout_constraintVertical_bias="0.060000002"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <LinearLayout
@@ -46,23 +46,55 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@id/layout_password"
+            app:layout_constraintBottom_toTopOf="@id/layout_phone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_login">
+            app:layout_constraintTop_toBottomOf="@id/layout_name">
 
             <TextView
                 style="@style/textBook.Caption"
-                android:textColor="@color/primary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Email or Mobile Number" />
+                android:layout_marginStart="4dp"
+                android:text="Email"
+                android:textColor="@color/primary" />
 
             <EditText
-                android:id="@+id/et_email_phone"
+                android:id="@+id/et_email"
                 style="@style/editText.Credentials"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Eg: JohnDoe@example.com"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                tools:ignore="TextFields" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/layout_password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_email">
+
+            <TextView
+                style="@style/textBook.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="Phone Number"
+                android:textColor="@color/primary" />
+
+            <EditText
+                android:id="@+id/et_phone"
+                style="@style/editText.Credentials"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Eg: +920000000000"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 tools:ignore="TextFields" />
@@ -75,17 +107,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@id/btn_login"
+            app:layout_constraintBottom_toTopOf="@id/btn_sign_up"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_email">
+            app:layout_constraintTop_toBottomOf="@id/layout_phone">
 
             <TextView
                 style="@style/textBook.Caption"
-                android:textColor="@color/primary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Password" />
+                android:layout_marginStart="4dp"
+                android:text="Password"
+                android:textColor="@color/primary" />
 
             <EditText
                 android:id="@+id/et_password"
@@ -97,14 +130,67 @@
                 tools:ignore="TextFields" />
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/layout_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/layout_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up">
+
+            <TextView
+                style="@style/textBook.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="Name"
+                android:textColor="@color/primary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_first_name"
+                    style="@style/editText.Credentials"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:hint="First name"
+                    android:inputType="textCapWords"
+                    android:maxLines="1"
+                    tools:ignore="TextFields" />
+
+                <EditText
+                    android:id="@+id/et_last_name"
+                    style="@style/editText.Credentials"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:hint="Last name"
+                    android:inputType="textCapWords"
+                    android:maxLines="1"
+                    tools:ignore="TextFields" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_sign_up"
             style="@style/flatButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Login"
+            android:text="Sign Up"
             app:layout_constraintBottom_toTopOf="@id/tv_do_not_have_account"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -117,23 +203,23 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:gravity="center"
-            android:textColor="@color/primaryLight"
             android:maxLines="1"
-            android:text="Don't have an account?"
-            app:layout_constraintBottom_toTopOf="@id/tv_create_account"
+            android:text="Have an account?"
+            android:textColor="@color/primaryLight"
+            app:layout_constraintBottom_toTopOf="@id/tv_go_to_login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_login" />
+            app:layout_constraintTop_toBottomOf="@id/btn_sign_up" />
 
         <TextView
-            android:id="@+id/tv_create_account"
+            android:id="@+id/tv_go_to_login"
             style="@style/textBook.Medium"
-            android:textColor="@color/secondary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:padding="8dp"
-            android:text="Create an account"
+            android:text="Login"
+            android:textColor="@color/secondary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

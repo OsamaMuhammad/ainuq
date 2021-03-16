@@ -34,6 +34,7 @@ class AddToCartFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.setProduct(args.productDetail)
+        viewModel.isEdit = args.isEdit
     }
 
     override fun onCreateView(
@@ -55,6 +56,12 @@ class AddToCartFragment : Fragment() {
 
 
     private fun setupObservers() {
+
+        if(viewModel.isEdit){
+            viewModel.productDetail.value?.prescription?.let {
+                viewModel.selectPrescription(it)
+            }
+        }
         viewModel.productDetail.observe(viewLifecycleOwner, Observer {
             it?.let {
                 binding.layoutTop.imgProduct.load(it.images.firstOrNull() ?: "") {
@@ -100,6 +107,13 @@ class AddToCartFragment : Fragment() {
     }
 
     private fun setupViews() {
+
+        if (viewModel.isEdit) {
+            binding.tvAppbarTitle.text = "Edit Item"
+            binding.btnAddToCart.text = "Update"
+        }
+
+
         colorAdapter = ColorsAdapter(
             context = requireContext(),
             onClick = {
@@ -148,7 +162,15 @@ class AddToCartFragment : Fragment() {
         }
 
         binding.btnAddToCart.setOnClickListener {
-            viewModel.addToCart()
+            if(viewModel.isEdit){
+                viewModel.updateItem()
+            }else{
+                viewModel.addToCart()
+            }
+        }
+
+        binding.imgCart.setOnClickListener {
+            findNavController().navigate(AddToCartFragmentDirections.actionAddToCartFragmentToCartFragment())
         }
 
         binding.btnAddPrescription.setOnClickListener {

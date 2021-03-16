@@ -61,10 +61,10 @@ class CartFragment : Fragment() {
         cartAdapter = CartAdapter(
             context = requireContext(),
             onEditClick = {
-
+                findNavController().navigate(CartFragmentDirections.actionCartFragmentToAddToCartFragment(it,true))
             },
             onRemoveClick = {
-
+                viewModel.deleteCartItemById(it)
             }
         )
 

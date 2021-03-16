@@ -2,7 +2,6 @@ package com.app.ainuq.ui.ainuqImage
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,13 +26,15 @@ public class FaceArFragment : ArFragment() {
     private var faceMeshTexture: Texture? = null
     private var faceRegionsRenderable: ModelRenderable? = null
 
+    var showHideLoading: ((Boolean) -> Unit)? = null
+
     var faceNodeMap = HashMap<AugmentedFace, AugmentedFaceNode>()
     private var changeModel: Boolean = false
 
-//    val arModel =
+    //    val arModel =
 //        "https://raw.githubusercontent.com/OsamaMuhammad/checking/master/scene.gltf"
     val arModel =
-        "https://raw.githubusercontent.com/OsamaMuhammad/checking/master/scene.gltf"
+        "https://raw.githubusercontent.com/OsamaMuhammad/checking/master/face-mesh-test5.gltf"
 
 
     override fun getSessionConfiguration(session: Session?): Config {
@@ -43,7 +44,7 @@ public class FaceArFragment : ArFragment() {
     }
 
     override fun getSessionFeatures(): MutableSet<Session.Feature> {
-        return EnumSet.of(Session.Feature.FRONT_CAMERA)
+        return EnumSet.of(Session.Feature.FRONT_CAMERA, Session.Feature.SHARED_CAMERA)
     }
 
     override fun onCreateView(
@@ -114,6 +115,7 @@ public class FaceArFragment : ArFragment() {
 
     private fun loadModel() {
         try {
+            showHideLoading?.invoke(true)
             ModelRenderable.builder()
                 .setSource(
                     requireContext(),
@@ -133,15 +135,20 @@ public class FaceArFragment : ArFragment() {
                     renderable.isShadowCaster = false
                     renderable.isShadowReceiver = false
                     Toast.makeText(requireContext(), "Model loaded", Toast.LENGTH_SHORT).show()
+                    showHideLoading?.invoke(false)
 
                 }
                 .exceptionally { throwable: Throwable? ->
-                    Toast.makeText(requireContext(), throwable?.message ?: "", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), throwable?.message ?: "", Toast.LENGTH_SHORT)
+                        .show()
                     Timber.i("cant load")
+                    showHideLoading?.invoke(false)
                     null
                 }
         } catch (e: Exception) {
+            Toast.makeText(requireContext(), e.message ?: "", Toast.LENGTH_SHORT)
             e.printStackTrace()
+            showHideLoading?.invoke(false)
         }
     }
 

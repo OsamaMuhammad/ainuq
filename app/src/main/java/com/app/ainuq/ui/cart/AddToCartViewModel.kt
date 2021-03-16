@@ -13,7 +13,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 @HiltViewModel
 class AddToCartViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
@@ -24,6 +23,8 @@ class AddToCartViewModel @Inject constructor(
 
     private val _productDetail: MutableLiveData<ProductItemUiModel> = MutableLiveData()
     val productDetail: LiveData<ProductItemUiModel> = _productDetail
+
+    var isEdit = false
 
     private val _addToCartEvent = MutableLiveData<Result<Unit>>()
     val addToCartEvent: LiveData<Result<Unit>> = _addToCartEvent
@@ -39,6 +40,7 @@ class AddToCartViewModel @Inject constructor(
         _productDetail.value = productDetail
     }
 
+
     fun selectColor(item: ColorItemUiModel) {
         var tempColorList = _productDetail.value?.colors?.toMutableList() ?: mutableListOf()
         tempColorList = tempColorList.map {
@@ -50,6 +52,7 @@ class AddToCartViewModel @Inject constructor(
             colors = tempColorList
         )
     }
+
 
     fun selectGlassType(item: GlassItemUiModel) {
         var tempGlassTypeList = _productDetail.value?.glasses?.toMutableList() ?: mutableListOf()
@@ -73,6 +76,7 @@ class AddToCartViewModel @Inject constructor(
             )
         }
     }
+
 
     fun addToCart() {
 
@@ -121,5 +125,56 @@ class AddToCartViewModel @Inject constructor(
 
         }
     }
+
+
+    fun updateItem() {
+
+        _addToCartEvent.value = Result.Loading
+        viewModelScope.launch {
+            _productDetail.value?.let { product ->
+                if (!product.colors.any { it.isSelected }) {
+                    _messageEvent.value = Event("Please select color")
+                    return@launch
+                }
+
+                if (!product.glasses.any { it.isSelected }) {
+                    _messageEvent.value = Event("Please select glass type")
+                    return@launch
+                }
+
+                if (prescriptions.value?.any { it.isSelected } != true) {
+                    _messageEvent.value = Event("Please select prescription")
+                    return@launch
+                }
+
+                product.prescription =
+                    prescriptions.value?.firstOrNull { it.isSelected }
+
+                cartRepository.updateCartItem(
+                    CartItemUModel(
+                        cartItemId = product.cartItemId ?: "",
+                        productId = product.productId,
+                        price = product.price,
+                        glasses = product.glasses,
+                        name = product.name,
+                        weight = product.weight,
+                        thickness = product.thickness,
+                        material = product.material,
+                        images = product.images,
+                        gender = product.gender,
+                        colors = product.colors,
+                        rating = product.rating,
+                        isFavourite = product.isFavourite,
+                        prescriptionId = product.prescription?.prescriptionId
+                    )
+                )
+
+                _addToCartEvent.value =
+                    Result.Success(data = Unit, message = "Updated Successfully")
+            }
+
+        }
+    }
+
 
 }

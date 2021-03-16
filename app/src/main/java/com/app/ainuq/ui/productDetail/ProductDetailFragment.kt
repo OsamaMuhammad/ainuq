@@ -130,9 +130,17 @@ class ProductDetailFragment : Fragment() {
         binding.btnAddToCart.setOnClickListener {
             viewModel.productDetail.value?.let {
                 findNavController()
-                    .navigate(ProductDetailFragmentDirections.actionProductDetailFragmentToAddToCartFragment(it))
+                    .navigate(
+                        ProductDetailFragmentDirections.actionProductDetailFragmentToAddToCartFragment(
+                            it
+                        )
+                    )
             }
-       }
+        }
+
+        binding.imgCart.setOnClickListener {
+            findNavController().navigate(ProductDetailFragmentDirections.actionProductDetailFragmentToCartFragment())
+        }
     }
 
     private fun selectImage(context: Context) {
@@ -187,11 +195,11 @@ class ProductDetailFragment : Fragment() {
 
     private fun navigateToAiNuqImageFragment() {
         viewModel.productDetail.value?.let { productDetail ->
-                findNavController()
-                    .navigate(
-                        ProductDetailFragmentDirections
-                            .actionProductDetailFragmentToAiNuqImageFragment(productDetail)
-                    )
+            findNavController()
+                .navigate(
+                    ProductDetailFragmentDirections
+                        .actionProductDetailFragmentToAiNuqImageFragment(productDetail)
+                )
 
         } ?: run {
             Toast.makeText(requireContext(), "Product Detail not found", Toast.LENGTH_SHORT).show()

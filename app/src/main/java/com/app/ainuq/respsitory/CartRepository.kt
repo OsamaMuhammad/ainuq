@@ -15,6 +15,10 @@ class CartRepository @Inject constructor(
         cartDao.insertCartItem(item)
     }
 
+    suspend fun updateCartItem(item: CartItemUModel) = withContext(Dispatchers.IO) {
+        cartDao.updateCartItem(item)
+    }
+
     fun getCartItems() = cartDao.getCartItems()
 
     suspend fun deleteCartItemById(cartItemId: String) = withContext(Dispatchers.IO) {
@@ -23,5 +27,9 @@ class CartRepository @Inject constructor(
 
     suspend fun deleteCartItem(cartItem: CartItemUModel) = withContext(Dispatchers.IO) {
         cartDao.deleteCartItem(item = cartItem)
+    }
+
+    suspend fun deleteAllItems() = withContext(Dispatchers.IO) {
+        cartDao.deleteAllItems()
     }
 }

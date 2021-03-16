@@ -1,9 +1,6 @@
 package com.app.ainuq.db
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.app.ainuq.ui.cart.CartItemUModel
 import kotlinx.coroutines.flow.Flow
 
@@ -26,4 +23,10 @@ interface CartDao {
 
     @Query("DELETE FROM CartItemUModel WHERE cartItemId = :cartItemId")
     fun deleteByCartItemId(cartItemId: String)
+
+    @Update
+    fun updateCartItem(item: CartItemUModel)
+
+    @Query("DELETE FROM CartItemUModel")
+    fun deleteAllItems()
 }

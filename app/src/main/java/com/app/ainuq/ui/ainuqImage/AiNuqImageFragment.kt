@@ -1,10 +1,14 @@
 package com.app.ainuq.ui.ainuqImage
 
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
+import android.view.PixelCopy
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
@@ -14,13 +18,12 @@ import androidx.navigation.fragment.navArgs
 import com.app.ainuq.R
 import com.app.ainuq.databinding.FragmentAiNuqImageBinding
 import com.google.ar.core.AugmentedFace
-import com.google.ar.core.TrackingState
 import com.google.ar.sceneform.rendering.ModelRenderable
-import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.rendering.Texture
 import com.google.ar.sceneform.ux.AugmentedFaceNode
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.ArrayList
+import java.util.*
+import kotlin.collections.HashMap
 
 @AndroidEntryPoint
 class AiNuqImageFragment : Fragment() {
@@ -33,6 +36,8 @@ class AiNuqImageFragment : Fragment() {
     private var faceMeshTexture: Texture? = null
     private var glasses: ArrayList<ModelRenderable> = ArrayList()
     private var faceRegionsRenderable: ModelRenderable? = null
+
+    val imageBitmap: Bitmap? = null
 
     var faceNodeMap = HashMap<AugmentedFace, AugmentedFaceNode>()
     private var index: Int = 0
@@ -64,8 +69,16 @@ class AiNuqImageFragment : Fragment() {
 
         arFragment = FaceArFragment()
 
+        arFragment.showHideLoading = {show->
+            if(show){
+                binding.layoutLoading.visibility =View.VISIBLE
+            }else{
+                binding.layoutLoading.visibility =View.GONE
+            }
+        }
+
         childFragmentManager.commit {
-            replace(R.id.fragment_container,arFragment)
+            replace(R.id.fragment_container, arFragment)
         }
         Texture.builder()
             .setSource(requireContext(), R.drawable.bell)
@@ -143,12 +156,28 @@ class AiNuqImageFragment : Fragment() {
     }
 
     private fun setupViews() {
-        binding.btnAddToCart.setOnClickListener{
+        binding.btnAddToCart.setOnClickListener {
 
         }
 
         binding.imgBack.setOnClickListener {
             findNavController().popBackStack()
+        }
+
+        binding.viewCapture.setOnClickListener {
+            val bitmap = Bitmap.createBitmap(
+                arFragment.arSceneView.width,
+                arFragment.arSceneView.height,
+                Bitmap.Config.ARGB_8888
+            )
+            PixelCopy.request(arFragment.arSceneView, bitmap, { copyResult ->
+                if (copyResult == PixelCopy.SUCCESS) {
+                    Toast.makeText(requireContext(), "Captured", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(AiNuqImageFragmentDirections.actionAiNuqImageFragmentToImageViewerFragment(bitmap))
+
+                } else {
+                }
+            }, Handler())
         }
     }
 

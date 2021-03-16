@@ -36,6 +36,15 @@
             app:popExitAnim="@anim/fragment_open_exit"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_loginFragment_to_signupFragment"
+            app:destination="@id/signupFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_open_exit"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/productDetailFragment"
@@ -55,6 +64,11 @@
             app:destination="@id/addToCartFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit" />
+        <action
+            android:id="@+id/action_productDetailFragment_to_cartFragment"
+            app:destination="@id/cartFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit" />
     </fragment>
     <fragment
         android:id="@+id/aiNuqImageFragment"
@@ -64,6 +78,9 @@
         <argument
             android:name="productDetail"
             app:argType="com.app.ainuq.ui.home.ProductItemUiModel" />
+        <action
+            android:id="@+id/action_aiNuqImageFragment_to_imageViewerFragment"
+            app:destination="@id/imageViewerFragment" />
     </fragment>
     <fragment
         android:id="@+id/addToCartFragment"
@@ -77,6 +94,15 @@
             app:destination="@id/addPrescriptionFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit" />
+        <argument
+            android:name="isEdit"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_addToCartFragment_to_cartFragment"
+            app:destination="@id/cartFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit" />
     </fragment>
     <fragment
         android:id="@+id/addPrescriptionFragment"
@@ -87,5 +113,35 @@
         android:id="@+id/cartFragment"
         android:name="com.app.ainuq.ui.cart.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/action_cartFragment_to_addToCartFragment"
+            app:destination="@id/addToCartFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.app.ainuq.ui.signup.SignupFragment"
+        android:label="fragment_signup"
+        tools:layout="@layout/fragment_signup">
+        <action
+            android:id="@+id/action_signupFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_open_exit"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageViewerFragment"
+        android:name="com.app.ainuq.ui.imageViewer.ImageViewerFragment"
+        android:label="fragment_image_viewer"
+        tools:layout="@layout/fragment_image_viewer" >
+        <argument
+            android:name="bitmap"
+            app:argType="android.graphics.Bitmap" />
+    </fragment>
 </navigation>

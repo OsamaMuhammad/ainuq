@@ -23,7 +23,6 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLoginBinding.inflate(layoutInflater)
-
         return binding.root
     }
 
@@ -36,6 +35,10 @@ class LoginFragment : Fragment() {
     private fun setUpViews() {
         binding.btnLogin.setOnClickListener {
             findNavController().navigate(LoginFragmentDirections.loginFragmentToMainFragment())
+        }
+
+        binding.tvCreateAccount.setOnClickListener {
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToSignupFragment())
         }
     }
 

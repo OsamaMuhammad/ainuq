@@ -28,4 +28,8 @@ interface PrescriptionDao {
     fun selectDeselectItem(isSelected: Boolean, prescriptionId: String)
 
 
+    @Query("DELETE FROM PrescriptionItemUiModel")
+    fun deleteAllItems()
+
+
 }

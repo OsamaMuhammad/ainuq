@@ -54,6 +54,7 @@ class AddPrescriptionFragment : Fragment() {
     private fun setupViews() {
 
         binding.btnAdd.setOnClickListener {
+            if(isValid())
             viewModel.addPrescription(
                 PrescriptionItemUiModel(
                     userId = "Osamaid",
@@ -80,6 +81,59 @@ class AddPrescriptionFragment : Fragment() {
         }
 
 
+    }
+
+    private fun isValid(): Boolean {
+        if(binding.etName.text?.toString().isNullOrEmpty()){
+            Toast.makeText(requireContext(),"Please enter name", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if(binding.etDate.text?.toString().isNullOrEmpty()){
+            Toast.makeText(requireContext(),"Please enter date", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if(binding.layputPrescription.spRight.text?.toString().isNullOrEmpty()){
+            Toast.makeText(requireContext(),"Please enter SP for right eye", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if(binding.layputPrescription.cylRight.text?.toString().isNullOrEmpty()){
+            Toast.makeText(requireContext(),"Please enter CYL for right eye", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if(binding.layputPrescription.axisRight.text?.toString().isNullOrEmpty()){
+            Toast.makeText(requireContext(),"Please enter AXIS for right eye", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if(binding.layputPrescription.prismRight.text?.toString().isNullOrEmpty()){
+            Toast.makeText(requireContext(),"Please enter PRISM for right eye", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if(binding.layputPrescription.baseRight.text?.toString().isNullOrEmpty()){
+            Toast.makeText(requireContext(),"Please enter BASE for right eye", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if(binding.layputPrescription.spLeft.text?.toString().isNullOrEmpty()){
+            Toast.makeText(requireContext(),"Please enter SP for left eye", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if(binding.layputPrescription.cylLeft.text?.toString().isNullOrEmpty()){
+            Toast.makeText(requireContext(),"Please enter CYL for left eye", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if(binding.layputPrescription.axisLeft.text?.toString().isNullOrEmpty()){
+            Toast.makeText(requireContext(),"Please enter AXIS for left eye", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if(binding.layputPrescription.prismLeft.text?.toString().isNullOrEmpty()){
+            Toast.makeText(requireContext(),"Please enter PRISM for left eye", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if(binding.layputPrescription.baseLeft.text?.toString().isNullOrEmpty()){
+            Toast.makeText(requireContext(),"Please enter BASE for left eye", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        return true
     }
 
     companion object {

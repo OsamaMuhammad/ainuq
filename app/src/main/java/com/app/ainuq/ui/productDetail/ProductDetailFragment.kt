@@ -126,6 +126,13 @@ class ProductDetailFragment : Fragment() {
 //            selectImage(requireContext())
             navigateToAiNuqImageFragment()
         }
+
+        binding.btnAddToCart.setOnClickListener {
+            viewModel.productDetail.value?.let {
+                findNavController()
+                    .navigate(ProductDetailFragmentDirections.actionProductDetailFragmentToAddToCartFragment(it))
+            }
+       }
     }
 
     private fun selectImage(context: Context) {

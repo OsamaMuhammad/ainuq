@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
+    id 'com.google.ar.sceneform.plugin'
 }
 
 android {
@@ -13,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId "com.app.ainuq"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -117,6 +118,16 @@ dependencies {
 
     implementation "io.coil-kt:coil:$coil_version"
 
+//    implementation 'com.google.ar:core:1.23.
+
+//    implementation "com.google.ar.sceneform.ux:sceneform-ux:1.17.1"
+
+    implementation "com.google.ar.sceneform.ux:sceneform-ux:1.17.1"
+    implementation 'com.google.ar.sceneform:assets:1.17.1'
+
+
+
+
 
     implementation("com.github.ihsanbal:LoggingInterceptor:$logging_interceptor_version") {
         exclude group: 'org.json', module: 'json'
@@ -142,3 +153,20 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
+
+
+sceneform.asset('sampledata/sunglasses.fbx',
+        'default',
+        'sampledata/sunglasses.sfa',
+        'src/main/assets/sunglasses')
+
+sceneform.asset('sampledata/yellow_sunglasses.fbx',
+        'default',
+        'sampledata/yellow_sunglasses.sfa',
+        'src/main/assets/yellow_sunglasses')
+
+//sceneform.asset('sampledata/scene.gltf',
+//        'default',
+//        'sampledata/scene.bin',
+//        'src/main/assets/scene')
+

@@ -23,6 +23,7 @@ buildscript {
         hilt_lifecycle = "1.0.0-alpha03"
         moshi_version = "1.11.0"
         pageindicatorview_version = "1.0.3"
+
     }
     repositories {
         google()
@@ -34,6 +35,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+        classpath 'com.google.ar.sceneform:plugin:1.17.1'
 
 
 

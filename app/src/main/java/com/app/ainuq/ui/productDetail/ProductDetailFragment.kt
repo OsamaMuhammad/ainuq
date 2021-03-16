@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -60,7 +61,7 @@ class ProductDetailFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        viewModel.productDetail.observe(viewLifecycleOwner) {
+        viewModel.productDetail.observe(viewLifecycleOwner, Observer {
             it?.let {
                 it.apply {
                     binding.tvFrameName.text = name
@@ -81,7 +82,7 @@ class ProductDetailFragment : Fragment() {
             } ?: run {
 
             }
-        }
+        })
     }
 
     private fun setupViews() {
@@ -122,7 +123,8 @@ class ProductDetailFragment : Fragment() {
         }
 
         binding.btnTryNow.setOnClickListener {
-            selectImage(requireContext())
+//            selectImage(requireContext())
+            navigateToAiNuqImageFragment()
         }
     }
 
@@ -163,45 +165,27 @@ class ProductDetailFragment : Fragment() {
             when (requestCode) {
                 REQUEST_IMAGE_CAPTURE -> if (resultCode == RESULT_OK && data != null) {
                     val selectedImage = data.extras?.get("data") as Bitmap?
-                    navigateToAiNuqImageFragment(selectedImage)
+//                    navigateToAiNuqImageFragment(selectedImage)
                 }
                 REQUEST_IMAGE_CHOOSE -> if (resultCode == RESULT_OK && data != null) {
 
                     val uri = data.data
                     val bitmap: Bitmap? = FileHelper.getBitmapFromUri(uri, requireContext())
-                    navigateToAiNuqImageFragment(bitmap)
+//                    navigateToAiNuqImageFragment(bitmap)
 
-
-//                    val selectedImage: Uri? = data.data
-//                    val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
-//                    if (selectedImage != null) {
-//                        val cursor: Cursor? = requireContext().contentResolver.query(
-//                            selectedImage,
-//                            filePathColumn, null, null, null
-//                        )
-//                        if (cursor != null) {
-//                            cursor.moveToFirst()
-//                            val columnIndex: Int = cursor.getColumnIndex(filePathColumn[0])
-//                            val picturePath: String = cursor.getString(columnIndex)
-//                            cursor.close()
-//                        }
-//                    }
                 }
             }
         }
     }
 
-    private fun navigateToAiNuqImageFragment(imageBitmap: Bitmap?) {
+    private fun navigateToAiNuqImageFragment() {
         viewModel.productDetail.value?.let { productDetail ->
-            imageBitmap?.let {
                 findNavController()
                     .navigate(
                         ProductDetailFragmentDirections
-                            .actionProductDetailFragmentToAiNuqImageFragment(it, productDetail)
+                            .actionProductDetailFragmentToAiNuqImageFragment(productDetail)
                     )
-            } ?: run {
-                Toast.makeText(requireContext(), "Image not found", Toast.LENGTH_SHORT).show()
-            }
+
         } ?: run {
             Toast.makeText(requireContext(), "Product Detail not found", Toast.LENGTH_SHORT).show()
         }

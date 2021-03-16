@@ -7,6 +7,7 @@ import java.util.*
 @Parcelize
 data class ColorItemUiModel(
     val id: Long = UUID.randomUUID().mostSignificantBits,
+    val colorId: String,
     val value: String,
     val name: String,
     val isSelected: Boolean

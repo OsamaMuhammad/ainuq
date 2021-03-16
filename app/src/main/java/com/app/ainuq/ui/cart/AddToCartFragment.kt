@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.app.ainuq.databinding.FragmentAddToCartBinding
+import com.app.ainuq.ui.prescription.PrescriptionAdapter
 import com.app.ainuq.ui.productDetail.ColorsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,6 +27,7 @@ class AddToCartFragment : Fragment() {
 
     private lateinit var colorAdapter: ColorsAdapter
     private lateinit var glassTypeAdapter: GlassTypeAdapter
+    private lateinit var prescriptAdapter: PrescriptionAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +52,6 @@ class AddToCartFragment : Fragment() {
     }
 
 
-
     private fun setupObservers() {
         viewModel.productDetail.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -65,18 +66,23 @@ class AddToCartFragment : Fragment() {
             }
         })
 
+        viewModel.prescriptions.observe(viewLifecycleOwner){
+            prescriptAdapter.submitList(it)
+        }
+
     }
 
     private fun setupViews() {
         colorAdapter = ColorsAdapter(
             context = requireContext(),
             onClick = {
-
+                viewModel.selectColor(it)
             }
         )
 
         binding.rvColors.apply {
             adapter = colorAdapter
+            itemAnimator = null
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
@@ -84,18 +90,38 @@ class AddToCartFragment : Fragment() {
         glassTypeAdapter = GlassTypeAdapter(
             context = requireContext(),
             onClick = {
-
+                viewModel.selectGlassType(it)
             }
         )
 
         binding.rvGlass.apply {
             adapter = glassTypeAdapter
+            itemAnimator = null
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
 
+
+        prescriptAdapter = PrescriptionAdapter(
+            context = requireContext(),
+            onClick = {
+                viewModel.selectPrescription(it)
+            }
+        )
+
+        binding.rvPrescription.apply {
+            adapter = prescriptAdapter
+            itemAnimator = null
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        }
+
         binding.imgBack.setOnClickListener {
             findNavController().popBackStack()
+        }
+
+        binding.btnAddPrescription.setOnClickListener {
+            findNavController().navigate(AddToCartFragmentDirections.actionAddToCartFragmentToAddPrescriptionFragment())
         }
     }
 

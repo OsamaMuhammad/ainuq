@@ -35,16 +35,19 @@ class HomeViewModel @Inject constructor(
                     rating = "4.5/5",
                     colors = listOf(
                         ColorItemUiModel(
+                            colorId = "sadsadsaf",
                             name = "Blue",
                             value = "#000C9C",
                             isSelected = true
                         ),
                         ColorItemUiModel(
+                            colorId = "sadsdfdsfsadsaf",
                             name = "Black",
                             value = "#000000",
                             isSelected = false
                         ),
                         ColorItemUiModel(
+                            colorId = "sadsadsadfsdfdsff",
                             name = "Silver",
                             value = "#EAE4E4",
                             isSelected = false
@@ -54,7 +57,7 @@ class HomeViewModel @Inject constructor(
                     glasses = listOf(
                         GlassItemUiModel(
                             name = "Glass",
-                            isSelected = true,
+                            isSelected = false,
                             price = "240",
                             glassId = "SDfdsf"
                         ),

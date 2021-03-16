@@ -49,10 +49,8 @@ class GlassTypeAdapter(
                 }
 
                 binding.tvPrice.text = "+ Rs. $price"
-//                binding.checkbox.setOnClickListener {
-//                    onClick.invoke(this)
-//                }
-                binding.checkbox.setOnCheckedChangeListener { compoundButton, b ->
+
+                binding.checkbox.setOnClickListener {
                     onClick.invoke(this)
                 }
             }

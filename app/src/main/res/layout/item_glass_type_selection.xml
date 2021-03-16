@@ -7,9 +7,9 @@
 
     <com.google.android.material.radiobutton.MaterialRadioButton
         android:id="@+id/checkbox"
-        style="@style/textMedium.Medium"
+        style="@style/textBook.Medium"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:paddingStart="8dp"
         android:text="Fdfdsfsd"
         android:textColor="@color/gray"

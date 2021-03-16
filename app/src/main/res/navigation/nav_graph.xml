@@ -52,9 +52,6 @@
         android:label="fragment_ai_nuq_image"
         tools:layout="@layout/fragment_ai_nuq_image" >
         <argument
-            android:name="image"
-            app:argType="android.graphics.Bitmap" />
-        <argument
             android:name="productDetail"
             app:argType="com.app.ainuq.ui.home.ProductItemUiModel" />
     </fragment>

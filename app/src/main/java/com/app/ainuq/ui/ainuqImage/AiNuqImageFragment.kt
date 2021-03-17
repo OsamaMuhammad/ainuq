@@ -69,11 +69,11 @@ class AiNuqImageFragment : Fragment() {
 
         arFragment = FaceArFragment()
 
-        arFragment.showHideLoading = {show->
-            if(show){
-                binding.layoutLoading.visibility =View.VISIBLE
-            }else{
-                binding.layoutLoading.visibility =View.GONE
+        arFragment.showHideLoading = { show ->
+            if (show) {
+                binding.layoutLoading.visibility = View.VISIBLE
+            } else {
+                binding.layoutLoading.visibility = View.GONE
             }
         }
 
@@ -173,11 +173,27 @@ class AiNuqImageFragment : Fragment() {
             PixelCopy.request(arFragment.arSceneView, bitmap, { copyResult ->
                 if (copyResult == PixelCopy.SUCCESS) {
                     Toast.makeText(requireContext(), "Captured", Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(AiNuqImageFragmentDirections.actionAiNuqImageFragmentToImageViewerFragment(bitmap))
+                    findNavController().navigate(
+                        AiNuqImageFragmentDirections.actionAiNuqImageFragmentToImageViewerFragment(
+                            bitmap
+                        )
+                    )
 
                 } else {
+
                 }
             }, Handler())
+        }
+
+        binding.btnAddToCart.setOnClickListener {
+            viewModel.productDetail.value?.let {
+                findNavController()
+                    .navigate(
+                        AiNuqImageFragmentDirections.actionAiNuqImageFragmentToAddToCartFragment(
+                            it
+                        )
+                    )
+            }
         }
     }
 

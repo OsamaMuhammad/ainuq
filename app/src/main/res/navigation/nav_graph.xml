@@ -21,6 +21,9 @@
             app:destination="@id/cartFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit" />
+        <action
+            android:id="@+id/action_mainFragment_to_aiNuqImageFragment"
+            app:destination="@id/aiNuqImageFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -81,6 +84,9 @@
         <action
             android:id="@+id/action_aiNuqImageFragment_to_imageViewerFragment"
             app:destination="@id/imageViewerFragment" />
+        <action
+            android:id="@+id/action_aiNuqImageFragment_to_addToCartFragment"
+            app:destination="@id/addToCartFragment" />
     </fragment>
     <fragment
         android:id="@+id/addToCartFragment"
@@ -139,7 +145,7 @@
         android:id="@+id/imageViewerFragment"
         android:name="com.app.ainuq.ui.imageViewer.ImageViewerFragment"
         android:label="fragment_image_viewer"
-        tools:layout="@layout/fragment_image_viewer" >
+        tools:layout="@layout/fragment_image_viewer">
         <argument
             android:name="bitmap"
             app:argType="android.graphics.Bitmap" />

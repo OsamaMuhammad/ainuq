@@ -61,7 +61,8 @@ class HomeFragment : Fragment() {
         popularAdapter = HomeProductAdapter(
             context = requireContext(),
             onTryClick = {
-
+                findNavController()
+                    .navigate(MainFragmentDirections.actionMainFragmentToAiNuqImageFragment(it))
             },
             onClick = {
                 findNavController()

@@ -38,7 +38,7 @@ class HomeViewModel @Inject constructor(
                             colorId = "sadsadsaf",
                             name = "Blue",
                             value = "#000C9C",
-                            isSelected = true
+                            isSelected = false
                         ),
                         ColorItemUiModel(
                             colorId = "sadsdfdsfsadsaf",

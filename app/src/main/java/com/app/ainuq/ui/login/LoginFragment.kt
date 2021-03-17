@@ -34,6 +34,7 @@ class LoginFragment : Fragment() {
 
     private fun setUpViews() {
         binding.btnLogin.setOnClickListener {
+            viewModel.login()
             findNavController().navigate(LoginFragmentDirections.loginFragmentToMainFragment())
         }
 

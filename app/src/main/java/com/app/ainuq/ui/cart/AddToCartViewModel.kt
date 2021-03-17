@@ -8,7 +8,6 @@ import com.app.ainuq.ui.home.ProductItemUiModel
 import com.app.ainuq.ui.prescription.PrescriptionItemUiModel
 import com.app.ainuq.ui.productDetail.ColorItemUiModel
 import com.app.ainuq.utils.Event
-import com.app.ainuq.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,11 +25,15 @@ class AddToCartViewModel @Inject constructor(
 
     var isEdit = false
 
-    private val _addToCartEvent = MutableLiveData<Result<Unit>>()
-    val addToCartEvent: LiveData<Result<Unit>> = _addToCartEvent
+    private val _addToCartEvent = MutableLiveData<Event<Boolean>>()
+    val addToCartEvent: LiveData<Event<Boolean>> = _addToCartEvent
+
+    private val _updateItemEvent = MutableLiveData<Event<Boolean>>()
+    val updateItemEvent: LiveData<Event<Boolean>> = _updateItemEvent
 
     val prescriptions: LiveData<List<PrescriptionItemUiModel>> =
-        userRepository.getAllPrescription("Osamaid").asLiveData(viewModelScope.coroutineContext)
+        userRepository.getAllPrescription(authStore.user?.userId ?: "")
+            .asLiveData(viewModelScope.coroutineContext)
 
     private val _messageEvent = MutableLiveData<Event<String>>()
     val messageEvent: LiveData<Event<String>> = _messageEvent
@@ -80,7 +83,6 @@ class AddToCartViewModel @Inject constructor(
 
     fun addToCart() {
 
-        _addToCartEvent.value = Result.Loading
         viewModelScope.launch {
             _productDetail.value?.let { product ->
                 if (!product.colors.any { it.isSelected }) {
@@ -120,7 +122,7 @@ class AddToCartViewModel @Inject constructor(
                     )
                 )
 
-                _addToCartEvent.value = Result.Success(data = Unit, message = "Added Successfully")
+                _addToCartEvent.value = Event(true)
             }
 
         }
@@ -129,7 +131,6 @@ class AddToCartViewModel @Inject constructor(
 
     fun updateItem() {
 
-        _addToCartEvent.value = Result.Loading
         viewModelScope.launch {
             _productDetail.value?.let { product ->
                 if (!product.colors.any { it.isSelected }) {
@@ -169,8 +170,10 @@ class AddToCartViewModel @Inject constructor(
                     )
                 )
 
-                _addToCartEvent.value =
-                    Result.Success(data = Unit, message = "Updated Successfully")
+                _messageEvent.value = Event("Item updated successfully")
+                _updateItemEvent.value = Event(true)
+
+
             }
 
         }

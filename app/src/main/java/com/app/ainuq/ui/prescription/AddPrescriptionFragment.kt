@@ -57,7 +57,7 @@ class AddPrescriptionFragment : Fragment() {
             if(isValid())
             viewModel.addPrescription(
                 PrescriptionItemUiModel(
-                    userId = "Osamaid",
+                    userId = viewModel.authStore.user?.userId ?: "",
                     axisLeft = binding.layputPrescription.axisLeft.text?.toString() ?: "",
                     axisRight = binding.layputPrescription.axisRight.text?.toString() ?: "",
                     baseLeft = binding.layputPrescription.baseLeft.text?.toString() ?: "",

@@ -13,17 +13,13 @@ import javax.inject.Inject
 @HiltViewModel
 class AddPrescriptionViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val authStore: AuthStore,
+    val authStore: AuthStore,
     private val userRepository: UserRepository
 ) : ViewModel() {
 
-//
-//    val prescriptions: LiveData<List<PrescriptionItemUiModel>> =
-//        userRepository.getAllPrescription("Osamaid").asLiveData()
 
     private val _messageEvent = MutableLiveData<Event<String>>()
     val messageEvent: LiveData<Event<String>> = _messageEvent
-
 
     fun addPrescription(item: PrescriptionItemUiModel) = viewModelScope.launch{
         userRepository.addPrescription(item)

@@ -21,9 +21,9 @@ import com.google.ar.sceneform.ux.AugmentedFaceNode
 import timber.log.Timber
 import java.util.*
 
-public class FaceArFragment : ArFragment() {
+class FaceArFragment : ArFragment() {
 
-    private var faceMeshTexture: Texture? = null
+//    private var faceMeshTexture: Texture? = null
     private var faceRegionsRenderable: ModelRenderable? = null
 
     var showHideLoading: ((Boolean) -> Unit)? = null
@@ -34,7 +34,7 @@ public class FaceArFragment : ArFragment() {
     //    val arModel =
 //        "https://raw.githubusercontent.com/OsamaMuhammad/checking/master/scene.gltf"
     val arModel =
-        "https://raw.githubusercontent.com/OsamaMuhammad/checking/master/face-mesh-test5.gltf"
+        "https://raw.githubusercontent.com/OsamaMuhammad/checking/master/black-test.gltf"
 
 
     override fun getSessionConfiguration(session: Session?): Config {
@@ -62,10 +62,10 @@ public class FaceArFragment : ArFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Texture.builder()
-            .setSource(requireContext(), R.drawable.bell)
-            .build()
-            .thenAccept { texture -> faceMeshTexture = texture }
+//        Texture.builder()
+//            .setSource(requireContext(), R.drawable.bell)
+//            .build()
+//            .thenAccept { texture -> faceMeshTexture = texture }
 
 //        ModelRenderable.builder()
 //            .setSource(requireContext(), Uri.parse("yellow_sunglasses.sfb"))
@@ -139,14 +139,14 @@ public class FaceArFragment : ArFragment() {
 
                 }
                 .exceptionally { throwable: Throwable? ->
-                    Toast.makeText(requireContext(), throwable?.message ?: "", Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), throwable?.message ?: "Something went wrong", Toast.LENGTH_SHORT)
                         .show()
                     Timber.i("cant load")
                     showHideLoading?.invoke(false)
                     null
                 }
         } catch (e: Exception) {
-            Toast.makeText(requireContext(), e.message ?: "", Toast.LENGTH_SHORT)
+            Toast.makeText(requireContext(), e.message ?: "Something went wrong", Toast.LENGTH_SHORT).show()
             e.printStackTrace()
             showHideLoading?.invoke(false)
         }

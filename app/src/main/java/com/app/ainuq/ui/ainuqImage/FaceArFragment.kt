@@ -34,7 +34,8 @@ class FaceArFragment : ArFragment() {
     //    val arModel =
 //        "https://raw.githubusercontent.com/OsamaMuhammad/checking/master/scene.gltf"
     val arModel =
-        "https://raw.githubusercontent.com/OsamaMuhammad/checking/master/black-test.gltf"
+//        "https://raw.githubusercontent.com/OsamaMuhammad/checking/master/black-test.gltf"
+        "https://raw.githubusercontent.com/OsamaMuhammad/checking/master/glasses_osama.gltf"
 
 
     override fun getSessionConfiguration(session: Session?): Config {
@@ -136,7 +137,6 @@ class FaceArFragment : ArFragment() {
                     renderable.isShadowReceiver = false
                     Toast.makeText(requireContext(), "Model loaded", Toast.LENGTH_SHORT).show()
                     showHideLoading?.invoke(false)
-
                 }
                 .exceptionally { throwable: Throwable? ->
                     Toast.makeText(requireContext(), throwable?.message ?: "Something went wrong", Toast.LENGTH_SHORT)
@@ -148,9 +148,9 @@ class FaceArFragment : ArFragment() {
         } catch (e: Exception) {
             Toast.makeText(requireContext(), e.message ?: "Something went wrong", Toast.LENGTH_SHORT).show()
             e.printStackTrace()
+            Timber.i(e)
             showHideLoading?.invoke(false)
         }
     }
-
 
 }

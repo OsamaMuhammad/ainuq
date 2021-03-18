@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginTop="12dp"
+    android:layout_marginBottom="4dp"
+    android:elevation="4dp"
+    app:cardCornerRadius="12dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_star"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/star"
+            app:layout_constraintBottom_toBottomOf="@id/tv_rating"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/tv_rating"
+            app:layout_constraintTop_toTopOf="@id/tv_rating" />
+
+        <TextView
+            android:id="@+id/tv_rating"
+            style="@style/textBook.Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="20dp"
+            android:paddingVertical="1dp"
+            android:textColor="@color/secondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_frame_name"
+            tools:text="4.5/5" />
+
+
+        <ImageView
+            android:id="@+id/img_favourite"
+            style="@style/imageIcon.Medium"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="16dp"
+            android:src="@drawable/heart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/primary" />
+
+        <ImageView
+            android:id="@+id/img_product"
+            android:layout_width="230dp"
+            android:layout_height="100dp"
+            android:layout_margin="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/glasses"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_favourite" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_try_now"
+            style="@style/outlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_margin="20dp"
+            android:text="Try Now"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_frame_name" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="0.1dp"
+            android:layout_marginTop="28dp"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_product" />
+
+        <TextView
+            android:id="@+id/tv_frame_name"
+            style="@style/textMedium.Medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:minLines="1"
+            android:textColor="@color/primaryLight"
+            app:layout_constraintEnd_toStartOf="@+id/btn_try_now"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            tools:text="Ray ban" />
+
+        <TextView
+            android:id="@+id/text_frame_price"
+            style="@style/textBook.Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:maxLines="1"
+            android:minLines="1"
+            android:text="Frame Price"
+            android:textColor="@color/primaryLight"
+            app:layout_constraintBottom_toBottomOf="@id/tv_frame_price"
+            app:layout_constraintEnd_toStartOf="@+id/btn_try_now"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_frame_name" />
+
+        <TextView
+            android:id="@+id/tv_frame_price"
+            style="@style/textBold.Medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp"
+            android:maxLines="1"
+            android:minLines="1"
+            android:textColor="@color/primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_try_now"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_frame_price"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Rs. 1,000" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

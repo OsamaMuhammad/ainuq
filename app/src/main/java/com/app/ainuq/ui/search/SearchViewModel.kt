@@ -1,4 +1,4 @@
-package com.app.ainuq.ui.home
+package com.app.ainuq.ui.search
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,27 +6,29 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.app.ainuq.common.AuthStore
 import com.app.ainuq.ui.cart.GlassItemUiModel
+import com.app.ainuq.ui.home.ProductItemUiModel
 import com.app.ainuq.ui.productDetail.ColorItemUiModel
+import com.app.ainuq.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import com.app.ainuq.utils.Result
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class SearchViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val authStore: AuthStore
 ) : ViewModel() {
 
-    private val _homeData: MutableLiveData<HomeUiModel> = MutableLiveData()
-    val homeData: LiveData<HomeUiModel> = _homeData
+    private val _filteredProducts: MutableLiveData<List<ProductItemUiModel>> = MutableLiveData()
+    val filteredProducts: LiveData<List<ProductItemUiModel>> = _filteredProducts
+
+    private var allProducts: List<ProductItemUiModel> = listOf()
 
     private val _eventState: MutableLiveData<Result<Unit>> = MutableLiveData()
     val eventState: LiveData<Result<Unit>> = _eventState
 
     init {
         val tempItems = mutableListOf<ProductItemUiModel>()
-        val categoryItems = mutableListOf<CategoryItemUiModel>()
-        repeat(12) {
+        repeat(20) {
             tempItems.add(
                 ProductItemUiModel(
                     name = "Item $it",
@@ -86,22 +88,22 @@ class HomeViewModel @Inject constructor(
                     weight = "Light",
                 )
             )
-            categoryItems.add(
-                CategoryItemUiModel(
-                    name = "Category $it"
-                )
-            )
         }
-
-        _homeData.value = HomeUiModel(
-            listPopular = tempItems,
-            listYouMayLike = tempItems,
-            listCategory = categoryItems
-        )
+        allProducts = tempItems
+        getProducts("")
     }
 
 
+    fun getProducts(searchString: String) {
+        if (searchString.trim().isEmpty() || searchString.trim().length < 2) {
+            _filteredProducts.value = allProducts
+            return
+        }
 
+        _filteredProducts.value = allProducts.filter {
+            it.name.toLowerCase().contains(searchString.trim().toLowerCase())
+        }
+    }
 
 
 }

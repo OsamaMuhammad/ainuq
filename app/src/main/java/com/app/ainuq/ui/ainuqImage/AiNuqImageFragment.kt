@@ -37,8 +37,6 @@ class AiNuqImageFragment : Fragment() {
     private var glasses: ArrayList<ModelRenderable> = ArrayList()
     private var faceRegionsRenderable: ModelRenderable? = null
 
-    val imageBitmap: Bitmap? = null
-
     var faceNodeMap = HashMap<AugmentedFace, AugmentedFaceNode>()
     private var index: Int = 0
     private var changeModel: Boolean = false

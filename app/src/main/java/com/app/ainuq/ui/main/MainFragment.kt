@@ -62,7 +62,7 @@ class MainFragment : Fragment() {
             binding.viewPager.currentItem = 1
         }
         binding.imgSearch.setOnClickListener {
-//            binding.viewPager.currentItem = 2
+            binding.viewPager.currentItem = 2
         }
         binding.imgNotification.setOnClickListener {
 //            binding.viewPager.currentItem = 3

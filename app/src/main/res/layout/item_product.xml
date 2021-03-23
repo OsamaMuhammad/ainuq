@@ -56,7 +56,7 @@
             android:layout_height="100dp"
             android:layout_margin="20dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/glasses"
+            tools:src="@drawable/glasses"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/img_favourite" />

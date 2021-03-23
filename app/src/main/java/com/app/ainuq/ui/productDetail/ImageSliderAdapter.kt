@@ -35,7 +35,7 @@ class ImageSliderAdapter(
 
         fun bind(url: String) {
 
-            binding.imgProduct.load(R.drawable.glasses){
+            binding.imgProduct.load(url){
                 crossfade(true)
             }
 

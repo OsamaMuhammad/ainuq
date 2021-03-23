@@ -25,7 +25,8 @@ data class ProductItemUiModel(
     val images: List<String>,
     val colors: List<ColorItemUiModel>,
     val glasses: List<GlassItemUiModel>,
-    var prescription: PrescriptionItemUiModel? = null
+    var prescription: PrescriptionItemUiModel? = null,
+    var modelUrl: String,
 ) : Parcelable{
 
     @Ignore

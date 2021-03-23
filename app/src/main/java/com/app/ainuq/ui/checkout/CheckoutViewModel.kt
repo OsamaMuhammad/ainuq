@@ -42,7 +42,8 @@ class CheckoutViewModel @Inject constructor(
                 name = cartItem.name,
                 glasses = cartItem.glasses,
                 price = cartItem.price,
-                productId = cartItem.productId
+                productId = cartItem.productId,
+                modelUrl = cartItem.modelUrl
             )
         }
     }.asLiveData(viewModelScope.coroutineContext)

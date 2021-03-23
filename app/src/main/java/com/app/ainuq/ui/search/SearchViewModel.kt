@@ -86,6 +86,7 @@ class SearchViewModel @Inject constructor(
                     productId = "$it",
                     thickness = "Normal",
                     weight = "Light",
+                    modelUrl = ""
                 )
             )
         }

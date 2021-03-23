@@ -44,7 +44,8 @@ class CartViewModel @Inject constructor(
                 name = cartItem.name,
                 glasses = cartItem.glasses,
                 price = cartItem.price,
-                productId = cartItem.productId
+                productId = cartItem.productId,
+                modelUrl = cartItem.modelUrl
             )
         }
     }.asLiveData(viewModelScope.coroutineContext)
@@ -73,7 +74,8 @@ class CartViewModel @Inject constructor(
                     name = item.name,
                     glasses = item.glasses,
                     price = item.price,
-                    productId = item.productId
+                    productId = item.productId,
+                    modelUrl = item.modelUrl
                 )
             )
         }

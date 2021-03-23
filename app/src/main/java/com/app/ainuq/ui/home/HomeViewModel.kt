@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import com.app.ainuq.common.AppConfig
 import com.app.ainuq.common.AuthStore
 import com.app.ainuq.ui.cart.GlassItemUiModel
 import com.app.ainuq.ui.productDetail.ColorItemUiModel
@@ -14,7 +15,8 @@ import com.app.ainuq.utils.Result
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val authStore: AuthStore
+    private val authStore: AuthStore,
+    private val appConfig: AppConfig,
 ) : ViewModel() {
 
     private val _homeData: MutableLiveData<HomeUiModel> = MutableLiveData()
@@ -76,14 +78,15 @@ class HomeViewModel @Inject constructor(
                     ),
                     gender = "Male",
                     images = listOf(
-                        "https://picsum.photos/id/0/300/200",
-                        "https://picsum.photos/id/1/300/200",
-                        "https://picsum.photos/id/10/300/200",
-                    ),
+                        appConfig.gitRawUrl +"golden-round/golden-round-front.png",
+                        appConfig.gitRawUrl +"golden-round/golden-round-side.png",
+                        appConfig.gitRawUrl +"golden-round/golden-round-side2.png",
+                        ),
                     material = "Metal",
                     productId = "$it",
                     thickness = "Normal",
                     weight = "Light",
+                    modelUrl = appConfig.gitRawUrl +"golden-round/golden-round.gltf"
                 )
             )
             categoryItems.add(
@@ -99,9 +102,6 @@ class HomeViewModel @Inject constructor(
             listCategory = categoryItems
         )
     }
-
-
-
 
 
 }

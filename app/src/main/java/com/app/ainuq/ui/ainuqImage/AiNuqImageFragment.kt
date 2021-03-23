@@ -17,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.app.ainuq.R
 import com.app.ainuq.databinding.FragmentAiNuqImageBinding
+import com.app.ainuq.utils.ImageStorageManager
 import com.google.ar.core.AugmentedFace
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Texture
@@ -171,12 +172,11 @@ class AiNuqImageFragment : Fragment() {
             PixelCopy.request(arFragment.arSceneView, bitmap, { copyResult ->
                 if (copyResult == PixelCopy.SUCCESS) {
                     Toast.makeText(requireContext(), "Captured", Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(
-                        AiNuqImageFragmentDirections.actionAiNuqImageFragmentToImageViewerFragment(
-                            bitmap
+                    ImageStorageManager.getResizedBitmap(bitmap,1024)?.let { rezisedBitmap ->
+                        findNavController().navigate(
+                            AiNuqImageFragmentDirections.actionAiNuqImageFragmentToImageViewerFragment(rezisedBitmap)
                         )
-                    )
-
+                    }
                 } else {
 
                 }

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.app.ainuq.databinding.ItemProductBinding
 import com.app.ainuq.utils.extension.px
 
@@ -66,6 +67,9 @@ class HomeProductAdapter(
             item.apply {
                 binding.tvFramePrice.text = "Rs. ${price}"
                 binding.tvRating.text = rating
+                binding.imgProduct.load(images.firstOrNull()){
+                    crossfade(true)
+                }
 
                 binding.root.setOnClickListener {
                     onClick.invoke(this)

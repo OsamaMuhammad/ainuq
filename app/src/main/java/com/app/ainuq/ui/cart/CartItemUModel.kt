@@ -19,5 +19,6 @@ data class CartItemUModel(
     val images: List<String>,
     val colors: List<ColorItemUiModel>,
     val glasses: List<GlassItemUiModel>,
-    var prescriptionId: String? = null
+    var prescriptionId: String? = null,
+    var modelUrl: String,
 )

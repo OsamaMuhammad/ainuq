@@ -118,7 +118,8 @@ class AddToCartViewModel @Inject constructor(
                         colors = product.colors,
                         rating = product.rating,
                         isFavourite = product.isFavourite,
-                        prescriptionId = product.prescription?.prescriptionId
+                        prescriptionId = product.prescription?.prescriptionId,
+                        modelUrl = product.modelUrl
                     )
                 )
 
@@ -166,7 +167,8 @@ class AddToCartViewModel @Inject constructor(
                         colors = product.colors,
                         rating = product.rating,
                         isFavourite = product.isFavourite,
-                        prescriptionId = product.prescription?.prescriptionId
+                        prescriptionId = product.prescription?.prescriptionId,
+                        modelUrl = product.modelUrl
                     )
                 )
 

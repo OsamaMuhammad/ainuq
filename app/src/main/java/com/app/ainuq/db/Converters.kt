@@ -1,6 +1,7 @@
 package com.app.ainuq.db
 
 import androidx.room.TypeConverter
+import com.app.ainuq.ui.cart.CartItemUiModel
 import com.app.ainuq.ui.cart.GlassItemUiModel
 import com.app.ainuq.ui.productDetail.ColorItemUiModel
 import com.squareup.moshi.JsonAdapter
@@ -72,6 +73,27 @@ class Converters {
             GlassItemUiModel::class.java
         )
         val adapter: JsonAdapter<List<GlassItemUiModel>> = moshi.adapter(listMyData)
+        return adapter.fromJson(value) ?: listOf()
+    }
+
+
+    @TypeConverter
+    fun cartListToJson(value: List<CartItemUiModel>): String {
+        val listMyData: Type = Types.newParameterizedType(
+            MutableList::class.java,
+            CartItemUiModel::class.java
+        )
+        val adapter: JsonAdapter<List<CartItemUiModel>> = moshi.adapter(listMyData)
+        return adapter.toJson(value) ?: ""
+    }
+
+    @TypeConverter
+    fun jsonToCartList(value: String): List<CartItemUiModel> {
+        val listMyData: Type = Types.newParameterizedType(
+            MutableList::class.java,
+            CartItemUiModel::class.java
+        )
+        val adapter: JsonAdapter<List<CartItemUiModel>> = moshi.adapter(listMyData)
         return adapter.fromJson(value) ?: listOf()
     }
 

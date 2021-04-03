@@ -66,7 +66,7 @@ class AiNuqImageFragment : Fragment() {
 
 
 
-        arFragment = FaceArFragment()
+        arFragment = FaceArFragment(args.productDetail.modelUrl)
 
         arFragment.showHideLoading = { show ->
             if (show) {

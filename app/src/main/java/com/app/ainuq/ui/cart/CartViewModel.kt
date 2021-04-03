@@ -60,7 +60,7 @@ class CartViewModel @Inject constructor(
     fun deleteCartItem(item: ProductItemUiModel) {
         viewModelScope.launch {
             cartRepository.deleteCartItem(
-                CartItemUModel(
+                CartItemUiModel(
                     cartItemId = item.cartItemId ?: "",
                     prescriptionId = item.prescription?.prescriptionId,
                     isFavourite = item.isFavourite,

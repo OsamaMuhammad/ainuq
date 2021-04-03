@@ -8,6 +8,7 @@ import com.app.ainuq.common.AppConfig
 import com.app.ainuq.common.AuthStore
 import com.app.ainuq.ui.cart.GlassItemUiModel
 import com.app.ainuq.ui.productDetail.ColorItemUiModel
+import com.app.ainuq.utils.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import com.app.ainuq.utils.Result
@@ -97,9 +98,22 @@ class HomeViewModel @Inject constructor(
         }
 
         _homeData.value = HomeUiModel(
-            listPopular = tempItems,
-            listYouMayLike = tempItems,
-            listCategory = categoryItems
+            listPopular = Constants.getAllProducts(),
+            listYouMayLike = Constants.getAllProducts().shuffled(),
+            listCategory = listOf(
+                CategoryItemUiModel(
+                    name = "Trending"
+                ),
+                CategoryItemUiModel(
+                    name = "New"
+                ),
+                CategoryItemUiModel(
+                    name = "Metal"
+                ),
+                CategoryItemUiModel(
+                    name = "Plastic"
+                )
+            )
         )
     }
 

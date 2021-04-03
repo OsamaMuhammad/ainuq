@@ -1,7 +1,7 @@
 package com.app.ainuq.db
 
 import androidx.room.*
-import com.app.ainuq.ui.cart.CartItemUModel
+import com.app.ainuq.ui.cart.CartItemUiModel
 import kotlinx.coroutines.flow.Flow
 
 
@@ -9,24 +9,24 @@ import kotlinx.coroutines.flow.Flow
 interface CartDao {
 
     @Insert
-    fun insertCartItem(item: CartItemUModel)
+    fun insertCartItem(item: CartItemUiModel)
 
-    @Query("SELECT * FROM CartItemUModel")
-    fun getCartItems(): Flow<List<CartItemUModel>>
+    @Query("SELECT * FROM CartItemUiModel")
+    fun getCartItems(): Flow<List<CartItemUiModel>>
 
 
 //    @Query("UPDATE CartEntity cartItemId")
 //    fun getCartItems(): List<CartEntity>
 
     @Delete
-    fun deleteCartItem(item: CartItemUModel)
+    fun deleteCartItem(item: CartItemUiModel)
 
-    @Query("DELETE FROM CartItemUModel WHERE cartItemId = :cartItemId")
+    @Query("DELETE FROM CartItemUiModel WHERE cartItemId = :cartItemId")
     fun deleteByCartItemId(cartItemId: String)
 
     @Update
-    fun updateCartItem(item: CartItemUModel)
+    fun updateCartItem(item: CartItemUiModel)
 
-    @Query("DELETE FROM CartItemUModel")
+    @Query("DELETE FROM CartItemUiModel")
     fun deleteAllItems()
 }

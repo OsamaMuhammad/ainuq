@@ -44,7 +44,7 @@ class HomeFragment : Fragment() {
         viewModel.homeData.observe(viewLifecycleOwner) {
             it?.let {
                 youMayLikeAdapter.submitList(it.listYouMayLike)
-                popularAdapter.submitList(it.listYouMayLike)
+                popularAdapter.submitList(it.listPopular)
                 categoryAdapter.submitList(it.listCategory)
             } ?: run {
                 youMayLikeAdapter.submitList(listOf())
@@ -99,7 +99,8 @@ class HomeFragment : Fragment() {
         youMayLikeAdapter = HomeProductAdapter(
             context = requireContext(),
             onTryClick = {
-
+                findNavController()
+                    .navigate(MainFragmentDirections.actionMainFragmentToAiNuqImageFragment(it))
             },
             onClick = {
                 findNavController()

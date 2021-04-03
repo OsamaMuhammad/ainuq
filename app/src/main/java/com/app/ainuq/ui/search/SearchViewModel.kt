@@ -8,6 +8,7 @@ import com.app.ainuq.common.AuthStore
 import com.app.ainuq.ui.cart.GlassItemUiModel
 import com.app.ainuq.ui.home.ProductItemUiModel
 import com.app.ainuq.ui.productDetail.ColorItemUiModel
+import com.app.ainuq.utils.Constants
 import com.app.ainuq.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -27,70 +28,7 @@ class SearchViewModel @Inject constructor(
     val eventState: LiveData<Result<Unit>> = _eventState
 
     init {
-        val tempItems = mutableListOf<ProductItemUiModel>()
-        repeat(20) {
-            tempItems.add(
-                ProductItemUiModel(
-                    name = "Item $it",
-                    isFavourite = false,
-                    price = 1500.0,
-                    rating = "4.5/5",
-                    colors = listOf(
-                        ColorItemUiModel(
-                            colorId = "sadsadsaf",
-                            name = "Blue",
-                            value = "#000C9C",
-                            isSelected = false
-                        ),
-                        ColorItemUiModel(
-                            colorId = "sadsdfdsfsadsaf",
-                            name = "Black",
-                            value = "#000000",
-                            isSelected = false
-                        ),
-                        ColorItemUiModel(
-                            colorId = "sadsadsadfsdfdsff",
-                            name = "Silver",
-                            value = "#EAE4E4",
-                            isSelected = false
-                        )
-                    ),
-
-                    glasses = listOf(
-                        GlassItemUiModel(
-                            name = "Glass",
-                            isSelected = false,
-                            price = 240.0,
-                            glassId = "SDfdsf"
-                        ),
-                        GlassItemUiModel(
-                            name = "Plastic",
-                            isSelected = false,
-                            price = 240.0,
-                            glassId = "asasfas"
-                        ),
-                        GlassItemUiModel(
-                            name = "Computer Glasses",
-                            isSelected = false,
-                            price = 435.0,
-                            glassId = "dfsdgsfhdssd"
-                        )
-                    ),
-                    gender = "Male",
-                    images = listOf(
-                        "https://picsum.photos/id/0/300/200",
-                        "https://picsum.photos/id/1/300/200",
-                        "https://picsum.photos/id/10/300/200",
-                    ),
-                    material = "Metal",
-                    productId = "$it",
-                    thickness = "Normal",
-                    weight = "Light",
-                    modelUrl = ""
-                )
-            )
-        }
-        allProducts = tempItems
+        allProducts = Constants.getAllProducts()
         getProducts("")
     }
 

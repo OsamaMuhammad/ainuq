@@ -21,7 +21,7 @@ import com.google.ar.sceneform.ux.AugmentedFaceNode
 import timber.log.Timber
 import java.util.*
 
-class FaceArFragment : ArFragment() {
+class FaceArFragment(private val arModel:String) : ArFragment() {
 
 //    private var faceMeshTexture: Texture? = null
     private var faceRegionsRenderable: ModelRenderable? = null
@@ -30,12 +30,6 @@ class FaceArFragment : ArFragment() {
 
     var faceNodeMap = HashMap<AugmentedFace, AugmentedFaceNode>()
     private var changeModel: Boolean = false
-
-    //    val arModel =
-//        "https://raw.githubusercontent.com/OsamaMuhammad/checking/master/scene.gltf"
-    val arModel =
-//        "https://raw.githubusercontent.com/OsamaMuhammad/checking/master/black-test.gltf"
-        "https://raw.githubusercontent.com/OsamaMuhammad/checking/master/glasses_osama.gltf"
 
 
     override fun getSessionConfiguration(session: Session?): Config {

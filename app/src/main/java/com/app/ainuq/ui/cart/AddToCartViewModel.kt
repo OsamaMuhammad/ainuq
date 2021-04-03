@@ -104,7 +104,7 @@ class AddToCartViewModel @Inject constructor(
                     prescriptions.value?.firstOrNull { it.isSelected }
 
                 cartRepository.addToCart(
-                    CartItemUModel(
+                    CartItemUiModel(
                         cartItemId = System.currentTimeMillis().toString(),
                         productId = product.productId,
                         price = product.price,
@@ -153,7 +153,7 @@ class AddToCartViewModel @Inject constructor(
                     prescriptions.value?.firstOrNull { it.isSelected }
 
                 cartRepository.updateCartItem(
-                    CartItemUModel(
+                    CartItemUiModel(
                         cartItemId = product.cartItemId ?: "",
                         productId = product.productId,
                         price = product.price,

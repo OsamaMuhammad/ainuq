@@ -49,6 +49,7 @@ class GlassTypeAdapter(
                 }
 
                 binding.tvPrice.text = "+ Rs. $price"
+                binding.checkbox.text = name
 
                 binding.checkbox.setOnClickListener {
                     onClick.invoke(this)

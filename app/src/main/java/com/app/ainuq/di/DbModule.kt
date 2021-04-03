@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.room.Room
 import com.app.ainuq.db.AppDatabase
 import com.app.ainuq.db.CartDao
+import com.app.ainuq.db.OrderDao
 import com.app.ainuq.db.PrescriptionDao
 import dagger.Module
 import dagger.Provides
@@ -32,6 +33,13 @@ class DbModule {
     @Provides
     fun provideCartDao(appDatabase: AppDatabase): CartDao {
         return appDatabase.cartDao()
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideOrderDao(appDatabase: AppDatabase): OrderDao {
+        return appDatabase.orderDao()
     }
 
     @Singleton

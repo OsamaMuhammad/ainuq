@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.app.ainuq.databinding.ItemProduct2Binding
 import com.app.ainuq.ui.home.HomeProductDiffUtil
 import com.app.ainuq.ui.home.ProductItemUiModel
@@ -49,6 +50,9 @@ class SearchProductAdapter(
                 binding.tvFramePrice.text = "Rs. ${price}"
                 binding.tvRating.text = rating
                 binding.tvFrameName.text = name
+                binding.imgProduct.load(images.firstOrNull()){
+                    crossfade(true)
+                }
 
                 binding.root.setOnClickListener {
                     onClick.invoke(this)

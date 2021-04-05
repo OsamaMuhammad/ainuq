@@ -23,14 +23,12 @@ import java.util.*
 
 class FaceArFragment(private val arModel:String) : ArFragment() {
 
-//    private var faceMeshTexture: Texture? = null
     private var faceRegionsRenderable: ModelRenderable? = null
 
     var showHideLoading: ((Boolean) -> Unit)? = null
 
     var faceNodeMap = HashMap<AugmentedFace, AugmentedFaceNode>()
     private var changeModel: Boolean = false
-
 
     override fun getSessionConfiguration(session: Session?): Config {
         val config = Config(session)
@@ -56,20 +54,6 @@ class FaceArFragment(private val arModel:String) : ArFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        Texture.builder()
-//            .setSource(requireContext(), R.drawable.bell)
-//            .build()
-//            .thenAccept { texture -> faceMeshTexture = texture }
-
-//        ModelRenderable.builder()
-//            .setSource(requireContext(), Uri.parse("yellow_sunglasses.sfb"))
-//            .build()
-//            .thenAccept { modelRenderable ->
-//                faceRegionsRenderable = modelRenderable
-//                modelRenderable.isShadowCaster = false
-//                modelRenderable.isShadowReceiver = false
-//            }
 
         loadModel()
 
@@ -117,7 +101,6 @@ class FaceArFragment(private val arModel:String) : ArFragment() {
                     RenderableSource.builder().setSource(
                         requireActivity(),
                         Uri.parse(arModel),
-//                        RenderableSource.SourceType.GLB
                         RenderableSource.SourceType.GLTF2
                     )
                         .setRecenterMode(RenderableSource.RecenterMode.ROOT)

@@ -171,7 +171,6 @@ class AiNuqImageFragment : Fragment() {
             )
             PixelCopy.request(arFragment.arSceneView, bitmap, { copyResult ->
                 if (copyResult == PixelCopy.SUCCESS) {
-                    Toast.makeText(requireContext(), "Captured", Toast.LENGTH_SHORT).show()
                     ImageStorageManager.getResizedBitmap(bitmap,1024)?.let { rezisedBitmap ->
                         findNavController().navigate(
                             AiNuqImageFragmentDirections.actionAiNuqImageFragmentToImageViewerFragment(rezisedBitmap)

@@ -49,7 +49,7 @@ class OrdersFragment : Fragment() {
         orderAdapter = OrdersAdapter(
             context = requireContext(),
             onClick= {
-
+                     findNavController().navigate(MainFragmentDirections.actionMainFragmentToOrderDetailFragment(it))
             },
         )
 

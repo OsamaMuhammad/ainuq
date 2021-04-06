@@ -1,10 +1,13 @@
 package com.app.ainuq.ui.cart
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.app.ainuq.ui.productDetail.ColorItemUiModel
 import com.squareup.moshi.JsonClass
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Entity
 @JsonClass(generateAdapter = true)
 data class CartItemUiModel(
@@ -23,4 +26,4 @@ data class CartItemUiModel(
     val glasses: List<GlassItemUiModel>,
     var prescriptionId: String? = null,
     var modelUrl: String,
-)
+): Parcelable

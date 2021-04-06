@@ -23,7 +23,14 @@
             app:exitAnim="@anim/fragment_open_exit" />
         <action
             android:id="@+id/action_mainFragment_to_aiNuqImageFragment"
-            app:destination="@id/aiNuqImageFragment" />
+            app:destination="@id/aiNuqImageFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit" />
+        <action
+            android:id="@+id/action_mainFragment_to_orderDetailFragment"
+            app:destination="@id/orderDetailFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -169,4 +176,13 @@
         android:id="@+id/checkoutFragment"
         android:name="com.app.ainuq.ui.checkout.CheckoutFragment"
         android:label="CheckoutFragment" />
+    <fragment
+        android:id="@+id/orderDetailFragment"
+        android:name="com.app.ainuq.ui.orders.OrderDetailFragment"
+        android:label="fragment_order_detail"
+        tools:layout="@layout/fragment_order_detail" >
+        <argument
+            android:name="orderDetail"
+            app:argType="com.app.ainuq.ui.orders.OrderItemUiModel" />
+    </fragment>
 </navigation>

@@ -3,6 +3,7 @@ package com.app.ainuq.ui.cart
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +16,7 @@ class CartAdapter(
     private val context: Context,
     private val onEditClick: (ProductItemUiModel) -> Unit,
     private val onRemoveClick: (ProductItemUiModel) -> Unit,
+    private val isFromOrderDetail: Boolean = false
 ) : ListAdapter<ProductItemUiModel, CartAdapter.CartViewHolder>((HomeProductDiffUtil())) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
         return CartViewHolder(
@@ -25,7 +27,8 @@ class CartAdapter(
             ),
             context = context,
             onEditClick = onEditClick,
-            onRemoveClick = onRemoveClick
+            onRemoveClick = onRemoveClick,
+            isFromOrderDetail = isFromOrderDetail
         )
     }
 
@@ -38,9 +41,18 @@ class CartAdapter(
         private val context: Context,
         private val onEditClick: (ProductItemUiModel) -> Unit,
         private val onRemoveClick: (ProductItemUiModel) -> Unit,
+        private val isFromOrderDetail: Boolean
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(itemUiModel: ProductItemUiModel) {
+
+            if(isFromOrderDetail){
+                binding.btnDelete.visibility = View.GONE
+                binding.btnEdit.visibility = View.GONE
+            }else{
+                binding.btnDelete.visibility = View.VISIBLE
+                binding.btnEdit.visibility = View.VISIBLE
+            }
 
             itemUiModel.apply {
                 val color = colors.firstOrNull() { it.isSelected }

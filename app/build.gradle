@@ -121,12 +121,12 @@ dependencies {
 
     implementation "io.coil-kt:coil:$coil_version"
 
-//    implementation 'com.google.ar:core:1.23.
+    implementation 'com.google.ar:core:1.37.0'
 
 //    implementation "com.google.ar.sceneform.ux:sceneform-ux:1.17.1"
 
-    implementation "com.google.ar.sceneform.ux:sceneform-ux:1.15.0"
-    implementation 'com.google.ar.sceneform:assets:1.15.0'
+    implementation "com.google.ar.sceneform.ux:sceneform-ux:1.17.1"
+    implementation 'com.google.ar.sceneform:assets:1.17.1'
 
 
     implementation "androidx.room:room-runtime:$room_version"
